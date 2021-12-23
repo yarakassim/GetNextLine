@@ -41,7 +41,7 @@ char	*ft_dup(char *str, int len)
 
 	if (!str)
 		return (str);
-	if (len_index(str, '\0') < len)
+	if (len > len_index(str, '\0'))
 		len = len_index(str, '\0');
 	dup = malloc(sizeof(char) * len + 1);
 	if (!dup)

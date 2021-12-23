@@ -14,27 +14,27 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*juno[4094];
+	static char	*juno;
 	char		buffer[BUFFER_SIZE + 1];
 	int			ret;
 
 	if (fd == -1)
 		return (NULL);
-	while (len_index(juno[fd], '\n') == -1)
+	while (len_index(juno, '\n') == -1)
 	{
 		ret = read(fd, buffer, BUFFER_SIZE);
 		buffer[ret] = '\0';
 		if (ret > 0)
 		{
-			if (!juno[fd])
-				juno[fd] = ft_dup(buffer, len_index(buffer, '\0'));
+			if (!juno)
+				juno = ft_dup(buffer, len_index(buffer, '\0'));
 			else
-				juno[fd] = ft_join(juno[fd], buffer);
+				juno = ft_join(juno, buffer);
 		}
 		else
 			break ;
 	}
-	return (operation_juno_line(&juno[fd]));
+	return (operation_juno_line(&juno));
 }
 
 /*int main(void)
